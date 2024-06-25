@@ -27,6 +27,7 @@ object,
 video {
     max-width: 100%;
 }
+/* Makes embedded content responsive by setting their 'max-width' to '100%' */
 
 h1,
 h2,
@@ -46,15 +47,19 @@ hr {
     padding-right: 0;
     padding-left: 0;
 }
+/*Resets margins and paddings to '0' for headings ('h1' to 'h6'), lists
+('ul', 'ol', 'li'), paragraphs ('p'), preformatted text ('pre'),
+blockquotes ('blockquote'), figures ('figure'), and horizontal rules ('hr')*/
 
 a {
     text-decoration: none;
 }
+/*Removes underline from anchor ('a') tags.*/
 
 a:focus {
     outline: none;
 }
-
+/*Removes outline on focus for anchor ('a') tags.*/
 h1,
 h2,
 h3,
@@ -63,6 +68,7 @@ h5,
 h6 {
     display: block;
 }
+/*Sets heading elements('h1' to 'h6') to display as block-level elements.*/
 
 /* Removes all decimals and discs from lists */
 
@@ -70,6 +76,7 @@ ol,
 ul {
     list-style: none;
 }
+/*Removes default list style from ordered('ol') and unordered ('ul') lists.*/
 
 /*
  * Completely resets form items
@@ -92,6 +99,8 @@ button {
     appearance: none;
     text-align: left;
 }
+/*Resets form elements ('input', 'textarea', 'button') by removing borders, background colors,
+and resetting text alignment, appearance, and other styles.*/
 
 input:hover,
 input:active,
@@ -104,16 +113,19 @@ button:active,
 button:focus {
     outline:none;
 }
+/*Removes outline on hover, active, and focus states for form elements.*/
 
 :root {
     font-family: Arial, Helvetica, sans-serif;
 }
+/*Sets the default font family for the document.*/
 
 html {
     font-size: 175%;
     font-weight: 300;
     line-height: 1.3;
 }
+/*Sets the base font size, weight, and line height for the 'html' element.*/
 
 body{
     align-items: center;
@@ -122,6 +134,8 @@ body{
     height: 100vh;
     justify-content: center;
 }
+/*Centers content vertically and horizontally using Flexbox ('align-items', 'justify-content')
+and sets a background image with a gradient. */
 
 .container {
     max-width: 20em;
@@ -130,6 +144,7 @@ body{
 .container > p {
     text-align: center;
 }
+/*Sets a maximum width for '.container' and centers paragraphs inside '.container'*/
 
 .calculator {
     border-radius: 12px;
@@ -140,6 +155,8 @@ body{
     max-width: 15em;
     overflow: hidden;
 }
+/*Styles for a calculator component, including border radius, box shadow, margins, max width,
+and hidden overflow.*/
 
 .calculator__display {
     background-color: #222222;
@@ -148,6 +165,8 @@ body{
     padding: 0.5em 0.75em;
     text-align: right;
 }
+/*Styles for the calculator display area, including background color, text color, font size, 
+padding, and text alignment*/
 
 .calculator__keys {
     background-color: #999;
@@ -155,6 +174,7 @@ body{
     grid-gap: 1px;
     grid-template-columns: repeat(4,1fr);
 }
+/*Styles for the calculator keys area, using CSS grid for layout.*/
 
 .calculator__keys > * {
     background-color: #fff;
@@ -162,6 +182,8 @@ body{
     position: relative;
     text-align: center;
 }
+/*Styles for individual calculator keys, including background color, padding, relative positioning
+and center-aligned text.*/
 
 .calculator__keys > *:active::before,
 .calculator__keys > .is-depressed::before {
@@ -176,6 +198,8 @@ body{
     top: 0;
     z-index: 1;
 }
+/*Styles for the pseudo-elements ('::before') of active and depressed keys,
+ adding a translucent overlay effect.*/
 
 .key--operator {
     background-color: #eee;
@@ -186,3 +210,5 @@ body{
     grid-column: -2;
     grid-row: 2 / span 4;
 }
+/*Specific styles for keys with '.key--operator' and '.key--equal' classes, including
+background colors and positioning within the grid layout.*/
