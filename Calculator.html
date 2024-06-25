@@ -1,16 +1,21 @@
 <div class="container">
 <!--div is a container, used for layout, and wraps the entire calculator interface.-->    
     <div class="calculator">
-        <!--This class represents the calculator, and represents the calculator itself and all of its elements-->
+        <!--This class represents the calculator, and represents the calculator itself
+         and all of its elements-->
         <div class="calculator__display">0</div>
         <div class="calculator__display">0</div>
-        <!--Contains all the calculator keys (both operators and numeric keys)-->
+        <!--displays the current value or results, it initializes as 0-->
 
         <div class="calculator__keys">
+        <!--Contains all the calculator keys (the operators and the number keys)-->
             <button class="key--operator" data-action="add">+</button>
             <button class="key--operator" data-action="subtract">-</button>
             <button class="key--operator" data-action="multiply">&times;</button>
             <button class="key--operator" data-action="divide">÷</button>
+        <!--These buttons represent the operator keys. They have the "key--operator" function
+        to style them differently from numeric keys and a "data-action" attribute that specifies
+        what action they perform.-->    
             <button>7</button>
             <button>8</button>
             <button>9</button>
@@ -21,10 +26,13 @@
             <button>2</button>
             <button>3</button>
             <button>0</button>
+        <!--Button represents the numeric keys from 0-9, are used to input numbers into a calculator-->
             <button data-action="decimal">.</button>
+        <!--Button represents the decimal point key-->    
             <button data-action="clear">AC</button>
+        <!--Represents the clear key, it will clear the current state.-->
             <button class="key--equal" data-action="calculate">=</button>
-    
+        <!--Represents the equals key, it will trigger the calculation of the current expression entered.-->
         </div>
     </div>
 </div>
