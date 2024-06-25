@@ -116,7 +116,7 @@ button:focus {
 /*Removes outline on hover, active, and focus states for form elements.*/
 
 :root {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Helvetica, Arial, sans-serif;
 }
 /*Sets the default font family for the document.*/
 
@@ -178,7 +178,7 @@ padding, and text alignment*/
 
 .calculator__keys > * {
     background-color: #fff;
-    padding: 0.5em 1,25em;
+    padding: 0.5em 0.75em;
     position: relative;
     text-align: center;
 }
