@@ -86,12 +86,28 @@
                 const keyContent = key.textContent
             }
         })
+        //If the calculator shows a non-zero number, we want to append the clicked key to the
+        //displayed number.
         if (!action){
             if (displayedNum === '0'){
                 display.textContent = keyContent
             } else{
                 display.textContent = displayedNum + keyContent
             }
-        }        
+        }
+        // The decimal should appear, and be appended on the display via concanaation
+        if (action === 'decimal'){
+            display.textContent = displayedNum + '.'
+        }
+        if (
+            action === 'add' ||
+            action === 'subtract' ||
+            action === 'multiply' ||
+            action === 'divide'
+        ){
+            key.classList.add('is-depressed')
+        }
+        keys.addEventListener('click', e )
+
     </script>
 </div>
