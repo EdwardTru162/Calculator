@@ -37,28 +37,32 @@
         <!--Represents the equals key, it will trigger the calculation of the current expression entered.-->
         </div>
     </div>
-
+    <!--What we want to do is listen to the key presses, 
+    and determine the type of key that is pressed. We use an event delegation pattern. -->
     <script>
         const calculator = document.querySelector('.calculator')
         const keys = calculator.querySelector('.calculator__keys')
-
         keys.addEventListener('click', e =>{
+        //<!--Determine the type of key that is clicked using data-action-->
             if (e.target.matches('button')){
                 const key = e.target
                 const action = key.dataset.action
             }
         })
+        //<!--However, if its not a data key, we can determine it is a number key-->
             if (!action) {
                 console.log('number key!')
             }
 
         if (
+            // If the key has a data-action with either "add", "subtract", "multiply", "divide"
+            // We know its an operator
             action === 'add' ||
             action === 'subtract' ||
             action === 'multiply' ||
             action === 'divide'
             ){
-                console.log('operator key!')
+            console.log('operator key!')
             }
         if (action === 'decimal'){
             console.log('decimal key!')
@@ -81,4 +85,3 @@
         
     </script>
 </div>
-/*https://www.freecodecamp.org/news/how-to-build-an-html-calculator-app-from-scratch-using-javascript-4454b8714b98/ */
