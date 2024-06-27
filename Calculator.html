@@ -63,6 +63,8 @@
             action === 'divide'
             ){
             key.classList.add(('is-depressed'))
+            calculator.dataset.firstValue = displayedNum
+            calculator.dataset.operator = action
             }
             //If the key's data-action is "clear, decimal, 
             //or calculate,they clicked on the following keys."
@@ -120,6 +122,13 @@
                  }
                 }
 
+        const calculate = (n1, operator,n2) => {
+            let result = ' '
 
+            if (operator === 'add'){
+                result = n1 + n2
+            }
+            else if 
+        }
     </script>
 </div>
