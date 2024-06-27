@@ -126,9 +126,19 @@
             let result = ' '
 
             if (operator === 'add'){
-                result = n1 + n2
+                result = parseFloat(n1) + parseFloat(n2)
             }
-            else if 
+            else if (operator === 'subtract'){
+                result = parseFloat(n1) - parseFloat(n2)
+            } 
+            else if (operator === 'multiply'){
+                result = parseFloat(n1) * parseFloat(n2)
+            }
+            else if (operator === 'divide'){
+                result = parseFloat(n1) / parseFloat(n2)
+            }
+            
+            return result
         }
     </script>
 </div>
