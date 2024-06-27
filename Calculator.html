@@ -62,7 +62,7 @@
             action === 'multiply' ||
             action === 'divide'
             ){
-            console.log('operator key!')
+            key.classList.add(('is-depressed'))
             }
             //If the key's data-action is "clear, decimal, 
             //or calculate,they clicked on the following keys."
@@ -84,6 +84,9 @@
                 const key = e.target
                 const action = key.dataset.action
                 const keyContent = key.textContent
+
+                Array.from(key.parentNode.children)
+                .forEach(k=> k.classList.remove('is-depressed'))   
             }
         })
         //If the calculator shows a non-zero number, we want to append the clicked key to the
@@ -107,7 +110,8 @@
         ){
             key.classList.add('is-depressed')
         }
-        keys.addEventListener('click', e )
+    
+
 
     </script>
 </div>
