@@ -127,13 +127,20 @@
       const operator = calculator.dataset.operator;
       const secondValue = displayedNum;
 
-      if (firstValue && operator) {
-        display.textContent = calculate(firstValue, operator, secondValue);
+      if (firstValue && operator && previousKeyType !== operator) {
+        const calcValue = calculate(firstValue,operator,secondValue)
+        display.textContent = calcValue
+
+        //Update calculated value as firstValue
+        calculator.dataset.firstValue = calcValue
+      }
+      else {
+        // if there are no calculations, set displayedNum as the firstValue
+        calculator.dataset.firstValue = displayedNum
       }
 
       key.classList.add("is-depressed");
       calculator.dataset.previousKeyType = "operator";
-      calculator.dataset.firstValue = displayedNum;
       calculator.dataset.operator = action;
     }
     const previousKeyType = calculator.dataset.previousKeyType;
@@ -160,6 +167,12 @@
       }
 
       return result;
-    };
+
+      if (action === 'calculate'){
+        const firstValue = calculator.dataset.firstValue
+        const operator = calculator.dataset.operator
+        const secondValue = displayedNum
+      }
+    }
   </script>
 </div>
