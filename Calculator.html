@@ -1,144 +1,165 @@
 <!--This project is done with assistance by freeCodeCamp-->
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css" />
 <div class="container">
-<!--div is a container, used for layout, and wraps the entire calculator interface.-->    
-    <div class="calculator">
-        <!--This class represents the calculator, and represents the calculator itself
+  <!--div is a container, used for layout, and wraps the entire calculator interface.-->
+  <div class="calculator">
+    <!--This class represents the calculator, and represents the calculator itself
          and all of its elements-->
-        <div class="calculator__display">0</div>
-        <div class="calculator__display">0</div>
-        <!--displays the current value or results, it initializes as 0-->
+    <div class="calculator__display">0</div>
+    <div class="calculator__display">0</div>
+    <!--displays the current value or results, it initializes as 0-->
 
-        <div class="calculator__keys">
-        <!--Contains all the calculator keys (the operators and the number keys)-->
-            <button class="key--operator" data-action="add">+</button>
-            <button class="key--operator" data-action="subtract">-</button>
-            <button class="key--operator" data-action="multiply">&times;</button>
-            <button class="key--operator" data-action="divide">÷</button>
-        <!--These buttons represent the operator keys. They have the "key--operator" function
+    <div class="calculator__keys">
+      <!--Contains all the calculator keys (the operators and the number keys)-->
+      <button class="key--operator" data-action="add">+</button>
+      <button class="key--operator" data-action="subtract">-</button>
+      <button class="key--operator" data-action="multiply">&times;</button>
+      <button class="key--operator" data-action="divide">÷</button>
+      <!--These buttons represent the operator keys. They have the "key--operator" function
         to style them differently from numeric keys and a "data-action" attribute that specifies
-        what action they perform.-->    
-            <button>7</button>
-            <button>8</button>
-            <button>9</button>
-            <button>4</button>
-            <button>5</button>
-            <button>6</button>
-            <button>1</button>
-            <button>2</button>
-            <button>3</button>
-            <button>0</button>
-        <!--Button represents the numeric keys from 0-9, are used to input numbers into a calculator-->
-            <button data-action="decimal">.</button>
-        <!--Button represents the decimal point key-->    
-            <button data-action="clear">AC</button>
-        <!--Represents the clear key, it will clear the current state.-->
-            <button class="key--equal" data-action="calculate">=</button>
-        <!--Represents the equals key, it will trigger the calculation of the current expression entered.-->
-        </div>
+        what action they perform.-->
+      <button>7</button>
+      <button>8</button>
+      <button>9</button>
+      <button>4</button>
+      <button>5</button>
+      <button>6</button>
+      <button>1</button>
+      <button>2</button>
+      <button>3</button>
+      <button>0</button>
+      <!--Button represents the numeric keys from 0-9, are used to input numbers into a calculator-->
+      <button data-action="decimal">.</button>
+      <!--Button represents the decimal point key-->
+      <button data-action="clear">AC</button>
+      <!--Represents the clear key, it will clear the current state.-->
+      <button class="key--equal" data-action="calculate">=</button>
+      <!--Represents the equals key, it will trigger the calculation of the current expression entered.-->
     </div>
-    <!--What we want to do is listen to the key presses, 
+  </div>
+
+  <!--What we want to do is listen to the key presses, 
     and determine the type of key that is pressed. We use an event delegation pattern. -->
-    <script>
-        const calculator = document.querySelector('.calculator')
-        const keys = calculator.querySelector('.calculator__keys')
-        keys.addEventListener('click', e =>{
-        //<!--Determine the type of key that is clicked using data-action-->
-            if (e.target.matches('button')){
-                const key = e.target
-                const action = key.dataset.action
-            }
-        })
-        //<!--However, if its not a data key, we can determine it is a number key-->
-            if (!action) {
-                console.log('number key!')
-            }
+  <script>
+    const calculator = document.querySelector(".calculator");
+    const keys = calculator.querySelector(".calculator__keys");
+    keys.addEventListener("click", (e) => {
+      //<!--Determine the type of key that is clicked using data-action-->
+      if (e.target.matches("button")) {
+        const key = e.target;
+        const action = key.dataset.action;
+      }
+    });
+    //<!--However, if its not a data key, we can determine it is a number key-->
+    if (!action) {
+      console.log("number key!");
+      calculator.dataset.previousKey = "number";
+    }
 
-        if (
-            // If the key has a data-action with either "add", "subtract", "multiply", "divide"
-            // We know its an operator
-            action === 'add' ||
-            action === 'subtract' ||
-            action === 'multiply' ||
-            action === 'divide'
-            ){
-            key.classList.add(('is-depressed'))
-            calculator.dataset.firstValue = displayedNum
-            calculator.dataset.operator = action
-            }
-            //If the key's data-action is "clear, decimal, 
-            //or calculate,they clicked on the following keys."
-        if (action === 'decimal'){
-            console.log('decimal key!')
-        }
-        if (action === 'clear'){
-            console.log('clear key!')
-        }
-        if (action === 'calculate'){
-            console.log('equal key!')
-        }
-        // We want to check that the number of the key was clicked, and that it is the current
-        // displayed number
-        const display = document.querySelector('.calculator__display')
-        // declares a constant named 'display' and assigns it the result 
-        keys.addEventListener('click', e => {
-            if (e.target.matches('button')) {
-                const key = e.target
-                const action = key.dataset.action
-                const keyContent = key.textContent
+    if (
+      // If the key has a data-action with either "add", "subtract", "multiply", "divide"
+      // We know its an operator
+      action === "add" ||
+      action === "subtract" ||
+      action === "multiply" ||
+      action === "divide"
+    ) {
+      key.classList.add("is-depressed");
+      calculator.dataset.firstValue = displayedNum;
+      calculator.dataset.operator = action;
+    }
+    //If the key's data-action is "clear, decimal,
+    //or calculate,they clicked on the following keys."
+    if (action === "decimal") {
+      if (!displayedNum.includes(".")) {
+        display.textContent = displayedNum + ".";
+      } else if (previousKeyType === "operator") {
+        display.textContent = "0.";
+      }
 
-                Array.from(key.parentNode.children)
-                .forEach(k=> k.classList.remove('is-depressed'))   
-            }
-        })
-        //If the calculator shows a non-zero number, we want to append the clicked key to the
-        //displayed number.
-        if (!action){
-            if (displayedNum === '0'){
-                display.textContent = keyContent
-            } else{
-                display.textContent = displayedNum + keyContent
-            }
-        }
-        // The decimal should appear, and be appended on the display via concanaation
-        if (action === 'decimal'){
-            display.textContent = displayedNum + '.'
-        }
-        if (
-            action === 'add' ||
-            action === 'subtract' ||
-            action === 'multiply' ||
-            action === 'divide'
-        ){
-            key.classList.add('is-depressed')
-        }
-        const previousKeyType = calculator.dataset.previousKeyType
+      calculator.dataset.previousKeyType = "decimal";
+    }
+    if (action === "clear") {
+      console.log("clear key!");
+      calculator.dataset.previousKey = "clear";
+    }
+    if (action === "calculate") {
+      console.log("equal key!");
+      calculator.dataset.previousKey = "calculate";
+    }
+    // We want to check that the number of the key was clicked, and that it is the current
+    // displayed number
+    const display = document.querySelector(".calculator__display");
+    // declares a constant named 'display' and assigns it the result
+    keys.addEventListener("click", (e) => {
+      if (e.target.matches("button")) {
+        const key = e.target;
+        const action = key.dataset.action;
+        const keyContent = key.textContent;
 
-            if (!action) {
-                if (displayedNum === '0' || previousKeyType === 'operator') {
-                     display.textContent = keyContent
-                } else {
-                     display.textContent = displayedNum + keyContent
-                 }
-                }
+        Array.from(key.parentNode.children).forEach((k) =>
+          k.classList.remove("is-depressed")
+        );
+      }
+    });
+    //If the calculator shows a non-zero number, we want to append the clicked key to the
+    //displayed number.
+    if (!action) {
+      if (displayedNum === "0") {
+        display.textContent = keyContent;
+      } else {
+        display.textContent = displayedNum + keyContent;
+      }
+      // Do nothing if string has a dot
+      if (!displayedNum.includes(",")) {
+        display.textContent = displayedNum + ".";
+      }
+    }
+    // The decimal should appear, and be appended on the display via concanaation
 
-        const calculate = (n1, operator,n2) => {
-            let result = ' '
+    if (
+      action === "add" ||
+      action === "subtract" ||
+      action === "multiply" ||
+      action === "divide"
+    ) {
+      const firstValue = calculator.dataset.firstValue;
+      const operator = calculator.dataset.operator;
+      const secondValue = displayedNum;
 
-            if (operator === 'add'){
-                result = parseFloat(n1) + parseFloat(n2)
-            }
-            else if (operator === 'subtract'){
-                result = parseFloat(n1) - parseFloat(n2)
-            } 
-            else if (operator === 'multiply'){
-                result = parseFloat(n1) * parseFloat(n2)
-            }
-            else if (operator === 'divide'){
-                result = parseFloat(n1) / parseFloat(n2)
-            }
-            
-            return result
-        }
-    </script>
+      if (firstValue && operator) {
+        display.textContent = calculate(firstValue, operator, secondValue);
+      }
+
+      key.classList.add("is-depressed");
+      calculator.dataset.previousKeyType = "operator";
+      calculator.dataset.firstValue = displayedNum;
+      calculator.dataset.operator = action;
+    }
+    const previousKeyType = calculator.dataset.previousKeyType;
+
+    if (!action) {
+      if (displayedNum === "0" || previousKeyType === "operator") {
+        display.textContent = keyContent;
+      } else {
+        display.textContent = displayedNum + keyContent;
+      }
+    }
+
+    const calculate = (n1, operator, n2) => {
+      let result = " ";
+
+      if (operator === "add") {
+        result = parseFloat(n1) + parseFloat(n2);
+      } else if (operator === "subtract") {
+        result = parseFloat(n1) - parseFloat(n2);
+      } else if (operator === "multiply") {
+        result = parseFloat(n1) * parseFloat(n2);
+      } else if (operator === "divide") {
+        result = parseFloat(n1) / parseFloat(n2);
+      }
+
+      return result;
+    };
+  </script>
 </div>
